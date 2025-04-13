@@ -21,13 +21,14 @@ int main(void) {
     }
     else if (choice == 2) {
         char* Roles=RoleCreator();
-        FilePrinting(Roles);
+        FileCreating(Roles);
         char filename[50];
     }
     return 0;
 }
 void FileCreating(char* filename) {
     FILE* in_file = fopen(filename, "w");
+    printf(filename);
     if (in_file == NULL) {
         perror("Error opening file");
     }
