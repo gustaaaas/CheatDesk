@@ -3,6 +3,7 @@
 char* RoleSelector();
 char* RoleCreator();
 void FilePrinting();
+void FileCreating();
 //add a menu.c a header file also a function file. also a nice ASCII art for the main menu would be nice
 
 int main(void) {
@@ -20,9 +21,17 @@ int main(void) {
     }
     else if (choice == 2) {
         char* Roles=RoleCreator();
+        FilePrinting(Roles);
         char filename[50];
     }
     return 0;
+}
+void FileCreating(char* filename) {
+    FILE* in_file = fopen(filename, "w");
+    if (in_file == NULL) {
+        perror("Error opening file");
+    }
+    char buffer[256];
 }
 void FilePrinting(char* filename) {
     FILE* in_file = fopen(filename, "r");
@@ -38,6 +47,7 @@ void FilePrinting(char* filename) {
 char* RoleSelector() {
     static char role[20];
     printf("What type of request are you performing");
+    //will need to modify this to dinamicly show the names
     printf("\n1. SWL\n2. NA\n");
     scanf("%19s",role);
     return role;
