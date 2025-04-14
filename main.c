@@ -1,42 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-char* RoleSelector();
-char* RoleCreator();
-void FilePrinting();
-void FileCreating();
-//add a menu.c a header file also a function file. also a nice ASCII art for the main menu would be nice
-//need to finish with the Roles struct to fully implement it!!!
+
+
 struct Roles {
     char Name[20];
     char FileName[20];
 };
+
+
+char* RoleSelector(int RoleCount,  struct Roles roles[]);
+char* RoleCreator();
+void FilePrinting(char* filename);
+void FileCreating(char* filename);
+//add a menu.c a header file also a function file. also a nice ASCII art for the main menu would be nice
+//need to finish with the Roles struct to fully implement it!!!
+
 #define MAX_ROLES 100
 
 int main(void) {
     int RoleCount = 0 , choice;
     struct Roles roles[MAX_ROLES];
+    while (1) {
+        printf("Welcome to CheatDesk\n");
+        printf("Do you want to choose a role (1)?\nDo you want to create a role (2)?\n");
+        scanf("%d",&choice);
+        if (choice == 1) {
+            char* SelectedRoles = RoleSelector(RoleCount, roles);
+            char filename[50];
+            sprintf(filename,"%s.txt",SelectedRoles);
+            FilePrinting(filename);
+        }
+        else if (choice == 2) {
+            char* Roles=RoleCreator();
+            strcpy(roles[RoleCount].Name,Roles);
+            //printf("%s\n",roles[RoleCount].Name);
+            FileCreating(Roles);
+            RoleCount++;
+        }
+        else if (choice == 3) {
 
-    printf("Welcome to CheatDesk\n");
-    printf("Do you want to choose a role (1)?\nDo you want to create a role (2)?\n");
-    scanf("%d",&choice);
-    if (choice == 1) {
-        char* Roles=RoleSelector();
-        char filename[50];
-        sprintf(filename,"%s.txt",Roles);
-        FilePrinting(filename);
+        }
+        else if (choice ==5) {
+            return 0;
+        }
     }
-    else if (choice == 2) {
-        char* Roles=RoleCreator();
-        strcpy(roles[RoleCount].Name,Roles);
-        //printf("%s\n",roles[RoleCount].Name);
-        FileCreating(Roles);
-        RoleCount++;
-    }
-    else if (choice == 3) {
-
-    }
-    return 0;
 }
 void FileCreating(char* filename) {
     FILE* in_file = fopen(filename, "w");
@@ -45,6 +53,7 @@ void FileCreating(char* filename) {
         return;
     }
     printf("Role ' %s ' created!\n", filename);
+    fclose(in_file);
 }
 void FilePrinting(char* filename) {
     FILE* in_file = fopen(filename, "r");
@@ -58,11 +67,12 @@ void FilePrinting(char* filename) {
     }
     fclose(in_file);
 }
-char* RoleSelector() {
+char* RoleSelector(int RoleCount,struct Roles roles[]) {
     static char role[20];
-    printf("What type of request are you performing");
-    //will need to modify this to dinamicly show the names
-    printf("\n1. SWL\n2. HRL\n");
+    printf("What type of request are you performing\n");
+    for (int i = 0; i < RoleCount; i++) {
+        printf("%d. %s\n", i + 1, roles[i].Name);
+    }
     scanf("%19s",role);
     return role;
 }
