@@ -8,7 +8,7 @@ struct Roles {
     char FileName[20];
 };
 
-
+int LoadDB(struct Roles roles[]);
 char* RoleSelector(int RoleCount,  struct Roles roles[]);
 char* RoleCreator();
 void FilePrinting(char* filename);
@@ -19,8 +19,10 @@ void FileCreating(char* filename);
 #define MAX_ROLES 100
 
 int main(void) {
-    int RoleCount = 0 , choice;
+    int choice;
     struct Roles roles[MAX_ROLES];
+
+    int RoleCount=LoadDB(roles);
     while (1) {
         printf("Welcome to CheatDesk\n");
         printf("Do you want to choose a role (1)?\nDo you want to create a role (2)?\n");
@@ -45,6 +47,25 @@ int main(void) {
             return 0;
         }
     }
+}
+int LoadDB(struct Roles roles[]) {
+    int i=0,count=0;
+    FILE* db_file = fopen("DB.txt", "r");
+    if (db_file == NULL) {
+        perror("Error opening DB file");
+        return;
+    }
+    char name[20];
+    char filename[20];
+
+    while (fscanf(db_file, "%19s %19s", name, filename) == 2) {
+        strncpy(roles[i].Name, name, sizeof(roles[i].Name));
+        strncpy(roles[i].FileName, filename, sizeof(roles[i].FileName));
+        i++;
+        count++;
+    }
+    fclose(db_file);
+    return count;
 }
 void FileCreating(char* filename) {
     FILE* in_file = fopen(filename, "w");
