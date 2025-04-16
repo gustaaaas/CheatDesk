@@ -21,7 +21,7 @@ goto loop
 
 :process
 set Line=!Line: =!
-for /f "tokens=1" %%B in ("!Line!") do set Deparment=%%B
+for /f "tokens=1" %%B in ("!Line!") do set Deparment=%%Bs
 for /f "tokens=2" %%C in ("!Line!") do set Email=%%C
 for /f "tokens=5" %%F in ("!Line!") do set FirstName=%%F
 for /f "tokens=6" %%G in ("!Line!") do set LastName=%%G
