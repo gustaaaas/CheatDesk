@@ -20,7 +20,7 @@ int main(void) {
             printf("Launch Documentation Builder (1)\n Go back (2)\n");
             scanf("%d",&choice);
                 if (choice == 1) {
-                    int launch=system("Role.bat");
+                    int launch=system("Roles.py");
                 }
                 else continue;
         }
