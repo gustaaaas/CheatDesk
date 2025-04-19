@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "roles.h"
-
+int is_number(const char *str) {
+    for (int i = 0; str[i]; i++) {
+        if (!isdigit(str[i])) return 0;
+    }
+    return 1;
+}
 int LoadDB(struct Roles roles[]) {
     int count = 0;
     FILE* db_file = fopen("DB.txt", "r");

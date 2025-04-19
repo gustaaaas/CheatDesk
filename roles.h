@@ -11,5 +11,6 @@ char* RoleSelector(int RoleCount, struct Roles roles[]);
 char* RoleCreator();
 void FilePrinting(char* filename);
 void FileCreating(char* filename);
+int is_number(const char *str);
 
 #endif

@@ -8,21 +8,29 @@ int main(void) {
     struct Roles roles[MAX_ROLES];
 
     int RoleCount=LoadDB(roles);
+
+    printf("Welcome to CheatDesk\n");
     while (1) {
-        printf("Welcome to CheatDesk\n");
-        printf("Do you want to choose a role (1)?\nDo you want to create a role (2)?\nExit(5)\n");
+        printf("Choose a role (1)?\nDo you want to create a role (2)?\nExit(5)\n");
         scanf("%d",&choice);
         if (choice == 1) {
-            char* SelectedRoles = RoleSelector(RoleCount, roles);
-            char filename[50];
-            sprintf(filename,"%s.txt",SelectedRoles);
-            FilePrinting(filename);
-            printf("Launch Documentation Builder (1)\n Go back (2)\n");
-            scanf("%d",&choice);
-                if (choice == 1) {
-                    int launch=system("Roles.py");
+            char *SelectedRoles = RoleSelector(RoleCount, roles);
+            char command[100];
+
+            if (is_number(SelectedRoles)) {
+                int index = atoi(SelectedRoles);
+                if (index >= 0 && index < RoleCount) {
+                    sprintf(command, "python %s", roles[index-1].Filename);
+                } else {
+                    printf("Invalid index.\n");
+                    continue;
                 }
-                else continue;
+            } else {
+                sprintf(command, "python %s", SelectedRoles);
+            }
+
+            printf("Running: %s\n", command);
+            int launch = system(command);
         }
         else if (choice == 2) {
             char* Roles=RoleCreator();
