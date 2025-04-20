@@ -8,19 +8,18 @@ int main(void) {
     struct Roles roles[MAX_ROLES];
 
     int RoleCount=LoadDB(roles);
-
-    printf("Welcome to CheatDesk\n");
     while (1) {
-        printf("Choose a role (1)?\nDo you want to create a role (2)?\nExit(5)\n");
+       PrintMenu();
         scanf("%d",&choice);
+        getchar();
         if (choice == 1) {
             char *SelectedRoles = RoleSelector(RoleCount, roles);
             char command[100];
 
             if (is_number(SelectedRoles)) {
-                int index = atoi(SelectedRoles);
+                int index = atoi(SelectedRoles)-1;
                 if (index >= 0 && index < RoleCount) {
-                    sprintf(command, "python %s", roles[index-1].Filename);
+                    sprintf(command, "python %s", roles[index].Filename);
                 } else {
                     printf("Invalid index.\n");
                     continue;
@@ -39,7 +38,7 @@ int main(void) {
             RoleCount++;
         }
         else if (choice == 3) {
-
+        //TBD
         }
         else if (choice ==5) {
             return 0;

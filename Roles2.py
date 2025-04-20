@@ -3,8 +3,6 @@ import win32com.client
 print("Paste the ticket description below (press Ctrl+Z when done for output):")
 outlook = win32com.client.Dispatch("Outlook.Application")
 
-mail.Display()
-
 try:
     raw_input = ""
     while True:
@@ -32,3 +30,4 @@ mail = outlook.CreateItem(0)
 mail.To = "example@example.com"  #Change on your needs
 mail.Subject = "Subject"#Mail subject
 mail.Body = ""#Your structure
+mail.Display()

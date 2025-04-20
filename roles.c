@@ -3,6 +3,17 @@
 #include <string.h>
 #include <ctype.h>
 #include "roles.h"
+void PrintMenu(){
+ printf("\n");
+    printf("=====================================\n");
+    printf("        Welcome to CheatDesk     \n");
+    printf("=====================================\n");
+    printf("  [1] Choose a role\n");
+    printf("  [2] Create a new role\n");
+    printf("  [5] Exit\n");
+    printf("=====================================\n");
+    printf("Enter your choice: ");
+  }
 int is_number(const char *str) {
     for (int i = 0; str[i]; i++) {
         if (!isdigit(str[i])) return 0;

@@ -5,7 +5,7 @@ struct Roles {
   char Name[20];
   char Filename[20];
 };
-
+void PrintMenu();
 int LoadDB(struct Roles roles[]);
 char* RoleSelector(int RoleCount, struct Roles roles[]);
 char* RoleCreator();
