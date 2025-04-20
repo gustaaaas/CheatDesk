@@ -1,7 +1,9 @@
 import re
-import webbrowser
-
+import win32com.client
 print("Paste the ticket description below (press Ctrl+Z when done for output):")
+outlook = win32com.client.Dispatch("Outlook.Application")
+
+mail.Display()
 
 try:
     raw_input = ""
@@ -16,14 +18,17 @@ email_match = re.search(r'[\w\.-]+@[\w\.-]+', raw_input)
 #
 name_match = re.search(r'Full Name:\s*([^\n\r]+)', raw_input)
 #
-#
-if not region_match:
-    region_match = re.search(r'for\s+([A-Za-z\s]+/[A-Za-z\s]+)', raw_input, re.IGNORECASE)
-    
+#  
 
-email = email_match.group() if email_match else "Unknown email"
+email = email_match.group() if email_match else "!!!Cant find email!!!"
 #
 #
-name = name_match.group() if name_match else "Not found Name"
+name = name_match.group() if name_match else "!!!Cant find Name!!!"
 #
 #
+
+
+mail = outlook.CreateItem(0)
+mail.To = "example@example.com"  #Change on your needs
+mail.Subject = "Subject"#Mail subject
+mail.Body = ""#Your structure
