@@ -42,13 +42,23 @@ int LoadDB(struct Roles roles[]) {
 }
 
 void FileCreating(char* filename) {
-    FILE* in_file = fopen(filename, "w");
+  char run[20];
+  FILE* in_file = fopen(filename, "w");
     if (in_file == NULL) {
         perror("Error opening file");
         return;
     }
     printf("Role ' %s ' created!\n", filename);
     fclose(in_file);
+    printf("Enter the '%s', script file name: ",filename);
+    scanf("%s", run);
+    FILE* db_file = fopen("DB.txt", "a");
+    if (db_file == NULL) {
+      perror("Error opening DB file");
+      return;
+    }
+    fprintf(db_file, "\n%s %s", filename, run);
+    fclose(db_file);
 }
 
 void FilePrinting(char* filename) {
