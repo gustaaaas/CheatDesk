@@ -8,8 +8,13 @@ int main(void) {
     struct Roles roles[MAX_ROLES];
 
     int RoleCount=LoadDB(roles);
+    printf("\033[1;36m");
+    printf("====================================\n");
+    printf("       	 WELCOME TO CHEATDESK       \n");
+    printf("====================================\n");
+    printf("\033[0m");
     while (1) {
-       PrintMenu();
+        PrintMenu();
         scanf("%d",&choice);
         getchar();
         if (choice == 1) {
@@ -19,13 +24,13 @@ int main(void) {
             if (is_number(SelectedRoles)) {
                 int index = atoi(SelectedRoles)-1;
                 if (index >= 0 && index < RoleCount) {
-                    sprintf(command, "python %s", roles[index].Filename);
+                    sprintf(command, "%s", roles[index].Filename);
                 } else {
                     printf("Invalid index.\n");
                     continue;
                 }
             } else {
-                sprintf(command, "python %s", SelectedRoles);
+                sprintf(command, "%s", SelectedRoles);
             }
 
             printf("Running: %s\n", command);
@@ -38,7 +43,7 @@ int main(void) {
             RoleCount++;
         }
         else if (choice == 3) {
-        //TBD
+            //nesugalvojau dar
         }
         else if (choice ==5) {
             return 0;
