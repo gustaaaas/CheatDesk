@@ -4,14 +4,28 @@
 #include <ctype.h>
 #include "roles.h"
 #include "cheatdesk_theme.h"
-
+void Intro() {
+    printf("\033[1;36m");
+    printf("    .oooooo.   oooo                                .   oooooooooo.                       oooo \n");
+    printf("  d8P'  `Y8b  `888                              .o8   `888'   `Y8b                       `888\n");
+    printf(" 888           888 .oo.    .ooooo.   .oooo.   .o888oo  888      888  .ooooo.     .oooo.o  888  oooo\n");
+    printf(" 888           888P*Y88b  d88' `88b `P  )88b    888    888      888 d88' `88b   d88(  *8  888 .8P'\n");
+    printf(" 888           888   888  888ooo888  .oP*888    888    888      888 888ooo888   `*Y88b.   888888.\n");
+    printf(" `88b    ooo   888   888  888    .o d8(  888    888 .  888     d88' 888    .o   o.  )88b  888 `88b.\n");
+    printf("  `Y8bood8P'  o888o o888o `Y8bod8P' `Y888**8o   *888* o888bood8P'   `Y8bod8P'   8**888P' o888o o888o\n");
+    printf("\033[0m\n\n\n\n\n\n");
+}
 void PrintMenu() {
     printf("\033[1;36m");
 printf("\n|==============================|\n");
 printf("|        CheatDesk Menu        |\n");
 printf("|==============================|\n");
-printf("| 1. View Roles                |\n");
-printf("| 2. Create Role               |\n");
+printf("|"BLUE" 1. View Roles"RESET);
+printf("\033[1;36m");
+printf("                |\n");
+printf("|"BLUE" 2. Create Role"RESET);
+printf("\033[1;36m");
+printf("               |\n");
 printf("|                              |\n");
 printf("|"RED" 5. Exit"RESET);
            printf("\033[1;36m");
