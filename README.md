@@ -3,9 +3,7 @@
 CheatDesk is a streamlined role management assistant designed to simplify role request processing within IT systems. Built using Python and C, it automates the generation of standardized Outlook emails and parses user input or documents (PDFs) to identify key ticket information. 
 ---
 
-
-Keep in mind, a big portion of code had to be hiden for confidentiality reasons, all parts that were deleted are marked as #. You will need to replace those parts with your logic if you would want to run this.
-----
+#### (Keep in mind, a big portion of code had to be hiden for confidentiality reasons, all parts that were deleted are marked as #. You will need to replace those parts with your logic if you would want to run this.)
 ## Features
 
 -  **Auto-Filled Email Creation**: Generates formatted Outlook emails requesting access roles for users.
